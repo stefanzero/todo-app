@@ -14,28 +14,64 @@
     <main class="container mt-5 mb-5">
       <h1 class="text-center">Todo App</h1>
       <div class="row justify-content-center">
-        <div class="col-md-6">
-          <div class="card">
+        <div class="col-lg-8 col-md-10 col-sm-12">
+          <div class="card new-todo">
             <div class="card-body">
               <h5 class="card-title">Add new todo</h5>
+              <label for="todo-input-select" class="d-block text-left"
+                >Description:</label
+              >
               <input
                 type="text"
                 id="todo-input"
                 class="form-control mb-3"
-                placeholder="Add new todo"
+                placeholder="Enter todo description"
+                required
               />
-              <button id="add-todo-btn" class="btn btn-primary">
+              <label for="priority-select" class="d-block text-left"
+                >Priority:</label
+              >
+              <select id="priority-select" class="form-select mb-3">
+                <option value="1">Low (1)</option>
+                <option value="2">Low-Medium (2)</option>
+                <option value="3">Medium (3)</option>
+                <option value="4">Medium-High (4)</option>
+                <option value="5" selected>High (5)</option>
+                <option value="6">High-Very High (6)</option>
+                <option value="7">Very High (7)</option>
+                <option value="8">Very High-Extremely High (8)</option>
+                <option value="9">Extremely High (9)</option>
+                <option value="10">Critical (10)</option>
+              </select>
+              <label for="due-date-input">Due Date:</label>
+              <input
+                type="text"
+                id="due-date-input"
+                class="form-control mb-3"
+                placeholder="Due Date"
+                required
+              />
+              <button id="add-todo-btn" class="btn btn-success">
                 Add Todo
               </button>
-              <hr />
+            </div>
+          </div>
+          <div class="card mt-3">
+            <div class="card-body">
               <h5 class="card-title">Todo List</h5>
-              <ul id="todo-list" class="list-group list-group-flush"></ul>
+              <ul
+                id="todo-list"
+                class="list-group list-group-flush container"
+              ></ul>
             </div>
           </div>
           <div class="card mt-3">
             <div class="card-body">
               <h5 class="card-title">Completed Tasks</h5>
-              <ul id="completed-list" class="list-group list-group-flush"></ul>
+              <ul
+                id="completed-list"
+                class="list-group list-group-flush container"
+              ></ul>
             </div>
           </div>
         </div>
