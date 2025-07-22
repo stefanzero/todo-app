@@ -118,7 +118,7 @@ class TodoView {
     this.handler = handler;
   }
 
-  createToDoElement(todo) {
+  createToDoElement(todo, checked = false) {
     const todoElement = document.createElement("li");
     todoElement.classList.add(
       "list-group-item",
@@ -131,11 +131,10 @@ class TodoView {
     checkbox.classList.add("col-1", "align-self-center");
     checkbox.type = "checkbox";
     checkbox.name = "todo";
+    checkbox.checked = checked;
     checkbox.dataset.id = todo.id;
     checkbox.addEventListener("change", () => {
-      if (checkbox.checked) {
-        this.handler(todo.id);
-      }
+      this.handler(todo.id);
     });
     const textElement = document.createElement("span");
     textElement.classList.add("col-7", "todo-text");
@@ -164,7 +163,7 @@ class TodoView {
   displayCompleted(todos) {
     this.completedListElement.innerHTML = "";
     todos.forEach((todo) => {
-      const todoElement = this.createToDoElement(todo);
+      const todoElement = this.createToDoElement(todo, true);
       this.completedListElement.appendChild(todoElement);
     });
   }
