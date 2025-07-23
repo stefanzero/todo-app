@@ -191,13 +191,8 @@ class TodoController {
    * @param {string} dueDate - The due date of the new todo item.
    */
   addTodo(text, priority, dueDate) {
-    const newTodo = new Todo(
-      this.todoList.length + this.completedList.length + 1,
-      text,
-      false,
-      priority,
-      dueDate,
-    );
+    const nextId = this.todoList.length + this.completedList.length + 1;
+    const newTodo = new Todo(nextId, text, false, priority, dueDate);
     this.todoList.push(newTodo);
     this.view.displayTodos(this.todoList);
     this.saveTodos();
