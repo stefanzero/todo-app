@@ -105,7 +105,7 @@ class TodoController {
      * In other words, this line connects the view's UI element (e.g., a button) to
      * the controller's logic for adding a new todo item.
      */
-    this.view.bindAddTodo(this.addTodo.bind(this));
+    // this.view.bindAddTodo(this.addTodo.bind(this));
     /**
      * Bind the toggleCompleted method to the view's toggleCompleted event handler:
      *
@@ -117,7 +117,23 @@ class TodoController {
      * In other words, this line connects the view's UI element (e.g., a checkbox) to
      * the controller's logic for toggling the completion status of a todo item.
      */
-    this.view.bindToggleCompleted(this.toggleCompleted.bind(this));
+    // this.view.bindToggleCompleted(this.toggleCompleted.bind(this));
+
+    /**
+     * Using an arrow function to bind the context:
+     *
+     * In JavaScript, arrow functions inherit the context (i.e., the value of 'this')
+     * from the surrounding scope. This means that when we use an arrow function to
+     * wrap the call to addTodo or toggleCompleted, we don't need to explicitly bind
+     * the context using bind(this).
+     *
+     * This is because the arrow function automatically captures the context of the
+     * surrounding scope, which in this case is the controller object. As a result,
+     * the value of 'this' inside the arrow function is already set to the controller
+     * object, so we don't need to use bind(this) to set it explicitly.
+     */
+    this.view.bindAddTodo((...args) => this.addTodo(...args));
+    this.view.bindToggleCompleted((...args) => this.toggleCompleted(...args));
   }
 
   /**
@@ -269,6 +285,7 @@ class TodoView {
    */
 
   handleToDoInput(handler) {
+    /* the handler is ToDoController.addTodo */
     if (this.todoInput.value.trim() === "" || this.dueDateInput.value === "") {
       alert(
         "Please fill out both the description and due date before adding a todo item.",
@@ -328,6 +345,7 @@ class TodoView {
    * @param {Function} handler - The function to execute with the todo item's id.
    */
   bindToggleCompleted(handler) {
+    /* the handler is ToDoController.toggleCompleted */
     this.handler = handler;
   }
 
